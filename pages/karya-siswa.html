@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karya Siswa - SMAN 1 Parengan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <style>
+        .gallery-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .gallery-content {
+            padding: 20px;
+        }
+        
+        .gallery-category {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .gallery-description {
+            color: #6c757d;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .gallery-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #adb5bd;
+        }
+        
+        .filter-buttons {
+            margin-bottom: 30px;
+        }
+        
+        .filter-buttons .btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-graduation-cap me-2"></i>SMAN 1 PARENGAN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="profil.html">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="berita.html">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white active" href="karya-siswa.html">Karya Siswa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="jadwal-pelajaran.html">Jadwal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="kontak.html">Kontak</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../login.html"><i class="fas fa-sign-in-alt me-1"></i> Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Beranda</a></li>
+                    <li class="breadcrumb-item active">Karya Siswa</li>
+                </ol>
+            </nav>
+            <h1 class="display-4 fw-bold">Karya Siswa</h1>
+            <p class="lead">Kreativitas dan inovasi siswa SMAN 1 Parengan</p>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <!-- Filter Buttons -->
+            <div class="filter-buttons text-center">
+                <button class="btn btn-primary active" data-filter="all">Semua Karya</button>
+                <button class="btn btn-outline-primary" data-filter="seni">Seni & Desain</button>
+                <button class="btn btn-outline-primary" data-filter="teknologi">Teknologi</button>
+                <button class="btn btn-outline-primary" data-filter="sains">Sains</button>
+                <button class="btn btn-outline-primary" data-filter="literasi">Literasi</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="row" id="galleryGrid">
+                <!-- Karya 1 -->
+                <div class="col-lg-4 col-md-6" data-category="teknologi">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Aplikasi Mobile" class="gallery-img">
+                        <div class="gallery-content">
+                            <div class="gallery-category">Teknologi</div>
+                            <h4 class="gallery-title">Aplikasi Mobile "EduLearn"</h4>
+                            <p class="gallery-description">Aplikasi pembelajaran mobile yang memudahkan siswa belajar di mana saja.</p>
+                            <div class="gallery-meta">
+                                <span><i class="fas fa-user me-1"></i> Ahmad Fauzi</span>
+                                <span><i class="fas fa-calendar me-1"></i> Mei 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Karya 2 -->
+                <div class="col-lg-4 col-md-6" data-category="seni">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Lukisan Digital" class="gallery-img">
+                        <div class="gallery-content">
+                            <div class="gallery-category">Seni & Desain</div>
+                            <h4 class="gallery-title">Lukisan Digital "Harmoni Alam"</h4>
+                            <p class="gallery-description">Karya seni digital yang menggambarkan keindahan alam Indonesia.</p>
+                            <div class="gallery-meta">
+                                <span><i class="fas fa-user me-1"></i> Siti Rahma</span>
+                                <span><i class="fas fa-calendar me-1"></i> April 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Karya 3 -->
+                <div class="col-lg-4 col-md-6" data-category="sains">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Robotika" class="gallery-img">
+                        <div class="gallery-content">
+                            <div class="gallery-category">Sains</div>
+                            <h4 class="gallery-title">Robot Pemilah Sampah</h4>
+                            <p class="gallery-description">Robot cerdas yang dapat memilah sampah organik dan anorganik.</p>
+                            <div class="gallery-meta">
+                                <span><i class="fas fa-user me-1"></i> Tim Robotika</span>
+                                <span><i class="fas fa-calendar me-1"></i> Maret 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Karya 4 -->
+                <div class="col-lg-4 col-md-6" data-category="literasi">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Buku Antologi" class="gallery-img">
+                        <div class="gallery-content">
+                            <div class="gallery-category">Literasi</div>
+                            <h4 class="gallery-title">Buku Antologi Puisi "Rindu Sekolah"</h4>
+                            <p class="gallery-description">Kumpulan puisi karya siswa tentang pengalaman selama pembelajaran daring.</p>
+                            <div class="gallery-meta">
+                                <span><i class="fas fa-user me-1"></i> Klub Literasi</span>
+                                <span><i class="fas fa-calendar me-1"></i> Februari 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Karya 5 -->
+                <div class="col-lg-4 col-md-6" data-category="teknologi">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Website Sekolah" class="gallery-img">
+                        <div class="gallery-content">
+                            <div class="gallery-category">Teknologi</div>
+                            <h4 class="gallery-title">Website E-Learning</h4>
+                            <p class="gallery-description">Platform pembelajaran online dengan fitur lengkap untuk siswa dan guru.</p>
+                            <div class="gallery-meta">
+                                <span><i class="fas fa-user me-1"></i> Tim IT Club</span>
+                                <span><i class="fas fa-calendar me-1"></i> Januari 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Karya 6 -->
+                <div class="col-lg-4 col-md-6" data-category="seni">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Film Pendek" class="gallery-img">
+                        <div class="gallery-content">
+                            <div class="gallery-category">Seni & Desain</div>
+                            <h4 class="gallery-title">Film Pendek "Suara Hati"</h4>
+                            <p class="gallery-description">Film pendek tentang perjuangan remaja menghadapi tekanan akademik.</p>
+                            <div class="gallery-meta">
+                                <span><i class="fas fa-user me-1"></i> Klub Sinematografi</span>
+                                <span><i class="fas fa-calendar me-1"></i> Desember 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-5">
+                <button class="btn btn-primary btn-lg">
+                    <i class="fas fa-plus me-2"></i>Muat Lebih Banyak
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>SMAN 1 Parengan</h5>
+                    <p>Jl. Raya Parengan No. 123, Kec. Parengan, Kab. Tuban, Jawa Timur 62366</p>
+                    <p><i class="fas fa-phone me-2"></i> (0356) 711234</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@sman1parengan.sch.id</p>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Menu</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../index.html">Beranda</a></li>
+                        <li><a href="profil.html">Profil</a></li>
+                        <li><a href="berita.html">Berita</a></li>
+                        <li><a href="karya-siswa.html">Karya Siswa</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Layanan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../login.html">Login Siswa</a></li>
+                        <li><a href="../login.html">Login Guru</a></li>
+                        <li><a href="jadwal-pelajaran.html">Jadwal</a></li>
+                        <li><a href="../ulangan/daftar-ulangan.html">Ulangan</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Kontak Kami</h5>
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Nama">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="3" placeholder="Pesan"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 SMAN 1 Parengan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Gallery filter functionality
+        document.querySelectorAll('.filter-buttons .btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-buttons .btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-outline-primary');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                this.classList.remove('btn-outline-primary');
+                this.classList.add('btn-primary');
+                
+                const filter = this.getAttribute('data-filter');
+                const galleryItems = document.querySelectorAll('#galleryGrid .col-lg-4');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all') {
+                        item.style.display = 'block';
+                    } else {
+                        if (item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
