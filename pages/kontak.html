@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - SMAN 1 Parengan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <style>
+        .contact-info {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .staff-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .staff-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .staff-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-graduation-cap me-2"></i>SMAN 1 PARENGAN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="profil.html">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="berita.html">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="karya-siswa.html">Karya Siswa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="jadwal-pelajaran.html">Jadwal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white active" href="kontak.html">Kontak</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../login.html"><i class="fas fa-sign-in-alt me-1"></i> Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Beranda</a></li>
+                    <li class="breadcrumb-item active">Kontak</li>
+                </ol>
+            </nav>
+            <h1 class="display-4 fw-bold">Hubungi Kami</h1>
+            <p class="lead">Kami siap membantu dan menjawab pertanyaan Anda</p>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <!-- Contact Info -->
+            <div class="row mb-5">
+                <div class="col-md-4 mb-4">
+                    <div class="contact-info text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Alamat</h4>
+                        <p>Jl. Raya Parengan No. 123<br>Kec. Parengan, Kab. Tuban<br>Jawa Timur 62366</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="contact-info text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>Telepon</h4>
+                        <p>(0356) 711234<br>(0356) 711235</p>
+                        <p>Senin - Jumat: 07:00 - 16:00</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="contact-info text-center">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email</h4>
+                        <p>info@sman1parengan.sch.id<br>admin@sman1parengan.sch.id</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="col-lg-8 mb-5">
+                    <div class="contact-form">
+                        <h3 class="mb-4">Kirim Pesan</h3>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Alamat Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subjek</label>
+                                <input type="text" class="form-control" id="subject" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Kategori</label>
+                                <select class="form-select" id="category" required>
+                                    <option value="">Pilih Kategori</option>
+                                    <option value="informasi">Informasi Umum</option>
+                                    <option value="pendaftaran">Pendaftaran Siswa Baru</option>
+                                    <option value="akademik">Masalah Akademik</option>
+                                    <option value="administrasi">Administrasi</option>
+                                    <option value="lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Pesan</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Map & Info -->
+                <div class="col-lg-4">
+                    <!-- Map -->
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.029113365899!2d111.8153141750514!3d-7.419008872051253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78a83ac9b5e6a5%3A0x3a8e8e8e8e8e8e8e!2sSMA%20Negeri%201%20Parengan!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+
+                    <!-- Quick Contacts -->
+                    <div class="contact-info">
+                        <h4 class="mb-3">Kontak Cepat</h4>
+                        <div class="mb-3">
+                            <strong>Kepala Sekolah:</strong><br>
+                            Drs. Ahmad Suryono, M.Pd.<br>
+                            <i class="fas fa-phone text-primary me-2"></i> (0356) 711234
+                        </div>
+                        <div class="mb-3">
+                            <strong>Wakil Kepala Sekolah:</strong><br>
+                            Diana Sari, S.Pd.<br>
+                            <i class="fas fa-phone text-primary me-2"></i> (0356) 711235
+                        </div>
+                        <div class="mb-3">
+                            <strong>Tata Usaha:</strong><br>
+                            Bambang Sutrisno, S.Sos.<br>
+                            <i class="fas fa-phone text-primary me-2"></i> (0356) 711236
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staff Contacts -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="section-title text-center">Staf Kontak</h3>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="staff-card">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kepala Sekolah" class="staff-img">
+                        <h5>Drs. Ahmad Suryono, M.Pd.</h5>
+                        <p class="text-primary">Kepala Sekolah</p>
+                        <p><i class="fas fa-phone me-2"></i> (0356) 711234</p>
+                        <p><i class="fas fa-envelope me-2"></i> kepala@sman1parengan.sch.id</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="staff-card">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wakil Kepala" class="staff-img">
+                        <h5>Diana Sari, S.Pd.</h5>
+                        <p class="text-primary">Wakil Kepala Sekolah</p>
+                        <p><i class="fas fa-phone me-2"></i> (0356) 711235</p>
+                        <p><i class="fas fa-envelope me-2"></i> wakil@sman1parengan.sch.id</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="staff-card">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kepala TU" class="staff-img">
+                        <h5>Bambang Sutrisno, S.Sos.</h5>
+                        <p class="text-primary">Kepala Tata Usaha</p>
+                        <p><i class="fas fa-phone me-2"></i> (0356) 711236</p>
+                        <p><i class="fas fa-envelope me-2"></i> tatausaha@sman1parengan.sch.id</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="staff-card">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kesiswaan" class="staff-img">
+                        <h5>Rina Marlina, S.Pd.</h5>
+                        <p class="text-primary">Kesiswaan</p>
+                        <p><i class="fas fa-phone me-2"></i> (0356) 711237</p>
+                        <p><i class="fas fa-envelope me-2"></i> kesiswaan@sman1parengan.sch.id</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>SMAN 1 Parengan</h5>
+                    <p>Jl. Raya Parengan No. 123, Kec. Parengan, Kab. Tuban, Jawa Timur 62366</p>
+                    <p><i class="fas fa-phone me-2"></i> (0356) 711234</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@sman1parengan.sch.id</p>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Menu</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../index.html">Beranda</a></li>
+                        <li><a href="profil.html">Profil</a></li>
+                        <li><a href="berita.html">Berita</a></li>
+                        <li><a href="karya-siswa.html">Karya Siswa</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Layanan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../login.html">Login Siswa</a></li>
+                        <li><a href="../login.html">Login Guru</a></li>
+                        <li><a href="jadwal-pelajaran.html">Jadwal</a></li>
+                        <li><a href="../ulangan/daftar-ulangan.html">Ulangan</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Kontak Kami</h5>
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Nama">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="3" placeholder="Pesan"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 SMAN 1 Parengan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const category = document.getElementById('category').value;
+            const message = document.getElementById('message').value;
+            
+            // Simulate form submission
+            alert(`Terima kasih ${name}! Pesan Anda telah terkirim. Kami akan membalas ke email ${email} dalam 1x24 jam.`);
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
