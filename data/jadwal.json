@@ -1,0 +1,254 @@
+{
+  "tahun_ajaran": "2023/2024",
+  "semester": "genap",
+  "kelas": {
+    "xii_ipa_1": {
+      "senin": [
+        {
+          "waktu": "07:00 - 07:45",
+          "mata_pelajaran": "Matematika",
+          "guru": "Diana Sari, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "07:45 - 08:30",
+          "mata_pelajaran": "Matematika",
+          "guru": "Diana Sari, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "08:30 - 09:15",
+          "mata_pelajaran": "Fisika",
+          "guru": "Budi Santoso, S.Pd.",
+          "ruang": "Lab. Fisika"
+        },
+        {
+          "waktu": "09:15 - 10:00",
+          "mata_pelajaran": "Fisika",
+          "guru": "Budi Santoso, S.Pd.",
+          "ruang": "Lab. Fisika"
+        },
+        {
+          "waktu": "10:00 - 10:30",
+          "mata_pelajaran": "Istirahat",
+          "guru": "",
+          "ruang": ""
+        },
+        {
+          "waktu": "10:30 - 11:15",
+          "mata_pelajaran": "Kimia",
+          "guru": "Rina Marlina, S.Pd.",
+          "ruang": "Lab. Kimia"
+        },
+        {
+          "waktu": "11:15 - 12:00",
+          "mata_pelajaran": "Kimia",
+          "guru": "Rina Marlina, S.Pd.",
+          "ruang": "Lab. Kimia"
+        },
+        {
+          "waktu": "12:00 - 12:45",
+          "mata_pelajaran": "Bahasa Indonesia",
+          "guru": "Sari Indah, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        }
+      ],
+      "selasa": [
+        {
+          "waktu": "07:00 - 07:45",
+          "mata_pelajaran": "Biologi",
+          "guru": "Ahmad Fauzi, S.Pd.",
+          "ruang": "Lab. Biologi"
+        },
+        {
+          "waktu": "07:45 - 08:30",
+          "mata_pelajaran": "Biologi",
+          "guru": "Ahmad Fauzi, S.Pd.",
+          "ruang": "Lab. Biologi"
+        },
+        {
+          "waktu": "08:30 - 09:15",
+          "mata_pelajaran": "Bahasa Inggris",
+          "guru": "Linda Sari, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "09:15 - 10:00",
+          "mata_pelajaran": "Bahasa Inggris",
+          "guru": "Linda Sari, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "10:00 - 10:30",
+          "mata_pelajaran": "Istirahat",
+          "guru": "",
+          "ruang": ""
+        },
+        {
+          "waktu": "10:30 - 11:15",
+          "mata_pelajaran": "Sejarah",
+          "guru": "Joko Widodo, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "11:15 - 12:00",
+          "mata_pelajaran": "Sejarah",
+          "guru": "Joko Widodo, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "12:00 - 12:45",
+          "mata_pelajaran": "Seni Budaya",
+          "guru": "Maya Sari, S.Pd.",
+          "ruang": "Aula"
+        }
+      ],
+      "rabu": [
+        {
+          "waktu": "07:00 - 07:45",
+          "mata_pelajaran": "Pendidikan Agama",
+          "guru": "Ustadz Ahmad",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "07:45 - 08:30",
+          "mata_pelajaran": "Pendidikan Agama",
+          "guru": "Ustadz Ahmad",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "08:30 - 09:15",
+          "mata_pelajaran": "PKn",
+          "guru": "Siti Rahma, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "09:15 - 10:00",
+          "mata_pelajaran": "PKn",
+          "guru": "Siti Rahma, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "10:00 - 10:30",
+          "mata_pelajaran": "Istirahat",
+          "guru": "",
+          "ruang": ""
+        },
+        {
+          "waktu": "10:30 - 11:15",
+          "mata_pelajaran": "Olahraga",
+          "guru": "Rudi Hartono, S.Pd.",
+          "ruang": "Lapangan"
+        },
+        {
+          "waktu": "11:15 - 12:00",
+          "mata_pelajaran": "Olahraga",
+          "guru": "Rudi Hartono, S.Pd.",
+          "ruang": "Lapangan"
+        },
+        {
+          "waktu": "12:00 - 12:45",
+          "mata_pelajaran": "BK",
+          "guru": "Dewi Sartika, S.Pd.",
+          "ruang": "R. BK"
+        }
+      ],
+      "kamis": [
+        {
+          "waktu": "07:00 - 07:45",
+          "mata_pelajaran": "Matematika",
+          "guru": "Diana Sari, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "07:45 - 08:30",
+          "mata_pelajaran": "Matematika",
+          "guru": "Diana Sari, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "08:30 - 09:15",
+          "mata_pelajaran": "Fisika",
+          "guru": "Budi Santoso, S.Pd.",
+          "ruang": "Lab. Fisika"
+        },
+        {
+          "waktu": "09:15 - 10:00",
+          "mata_pelajaran": "Fisika",
+          "guru": "Budi Santoso, S.Pd.",
+          "ruang": "Lab. Fisika"
+        },
+        {
+          "waktu": "10:00 - 10:30",
+          "mata_pelajaran": "Istirahat",
+          "guru": "",
+          "ruang": ""
+        },
+        {
+          "waktu": "10:30 - 11:15",
+          "mata_pelajaran": "Kimia",
+          "guru": "Rina Marlina, S.Pd.",
+          "ruang": "Lab. Kimia"
+        },
+        {
+          "waktu": "11:15 - 12:00",
+          "mata_pelajaran": "Kimia",
+          "guru": "Rina Marlina, S.Pd.",
+          "ruang": "Lab. Kimia"
+        },
+        {
+          "waktu": "12:00 - 12:45",
+          "mata_pelajaran": "Bahasa Indonesia",
+          "guru": "Sari Indah, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        }
+      ],
+      "jumat": [
+        {
+          "waktu": "07:00 - 07:45",
+          "mata_pelajaran": "Bahasa Inggris",
+          "guru": "Linda Sari, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "07:45 - 08:30",
+          "mata_pelajaran": "Bahasa Inggris",
+          "guru": "Linda Sari, S.Pd.",
+          "ruang": "R. XII IPA 1"
+        },
+        {
+          "waktu": "08:30 - 09:15",
+          "mata_pelajaran": "TIK",
+          "guru": "Andi Pratama, S.Kom.",
+          "ruang": "Lab. Komputer"
+        },
+        {
+          "waktu": "09:15 - 10:00",
+          "mata_pelajaran": "TIK",
+          "guru": "Andi Pratama, S.Kom.",
+          "ruang": "Lab. Komputer"
+        },
+        {
+          "waktu": "10:00 - 10:30",
+          "mata_pelajaran": "Istirahat",
+          "guru": "",
+          "ruang": ""
+        },
+        {
+          "waktu": "10:30 - 11:00",
+          "mata_pelajaran": "Sholat Jumat",
+          "guru": "",
+          "ruang": "Musholla"
+        },
+        {
+          "waktu": "11:00 - 11:45",
+          "mata_pelajaran": "Ekstrakurikuler",
+          "guru": "",
+          "ruang": "Berbagai"
+        }
+      ]
+    }
+  },
+  "updated_at": "2023-05-15T08:00:00Z",
+  "updated_by": "Administrator"
+}

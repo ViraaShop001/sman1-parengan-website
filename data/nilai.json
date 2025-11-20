@@ -1,0 +1,173 @@
+{
+  "nilai": [
+    {
+      "id": "nilai_001",
+      "ulangan_id": "ulangan_001",
+      "siswa_nis": "20210012",
+      "siswa_nama": "Ahmad Fauzi",
+      "kelas": "XII IPA 1",
+      "mata_pelajaran": "Matematika",
+      "jenis_ulangan": "ulangan_harian",
+      "tanggal_ulangan": "2023-05-15",
+      "nilai": 85,
+      "grade": "B+",
+      "jawaban": [
+        {
+          "soal_id": "soal_001",
+          "jawaban_siswa": "A",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_002",
+          "jawaban_siswa": "C",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_003",
+          "jawaban_siswa": "B",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_004",
+          "jawaban_siswa": "B",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_005",
+          "jawaban_siswa": "C",
+          "status": "salah",
+          "nilai": 0
+        }
+      ],
+      "waktu_pengerjaan": 45,
+      "komentar_guru": "Hasil yang sangat baik! Pertahankan prestasinya. Perhatikan kembali nilai dasar trigonometri untuk soal nomor 5.",
+      "diedit_oleh": "Diana Sari, S.Pd.",
+      "created_at": "2023-05-15T10:30:00Z",
+      "updated_at": "2023-05-15T16:30:00Z"
+    },
+    {
+      "id": "nilai_002",
+      "ulangan_id": "ulangan_001",
+      "siswa_nis": "20210013",
+      "siswa_nama": "Siti Rahma",
+      "kelas": "XII IPA 1",
+      "mata_pelajaran": "Matematika",
+      "jenis_ulangan": "ulangan_harian",
+      "tanggal_ulangan": "2023-05-15",
+      "nilai": 92,
+      "grade": "A",
+      "jawaban": [
+        {
+          "soal_id": "soal_001",
+          "jawaban_siswa": "A",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_002",
+          "jawaban_siswa": "C",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_003",
+          "jawaban_siswa": "B",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_004",
+          "jawaban_siswa": "B",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_005",
+          "jawaban_siswa": "D",
+          "status": "benar",
+          "nilai": 10
+        }
+      ],
+      "waktu_pengerjaan": 50,
+      "komentar_guru": "Sempurna! Pertahankan konsistensi belajar Anda.",
+      "diedit_oleh": "Diana Sari, S.Pd.",
+      "created_at": "2023-05-15T10:45:00Z",
+      "updated_at": "2023-05-15T16:30:00Z"
+    },
+    {
+      "id": "nilai_003",
+      "ulangan_id": "ulangan_001",
+      "siswa_nis": "20210014",
+      "siswa_nama": "Budi Santoso",
+      "kelas": "XII IPA 1",
+      "mata_pelajaran": "Matematika",
+      "jenis_ulangan": "ulangan_harian",
+      "tanggal_ulangan": "2023-05-15",
+      "nilai": 78,
+      "grade": "B",
+      "jawaban": [
+        {
+          "soal_id": "soal_001",
+          "jawaban_siswa": "A",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_002",
+          "jawaban_siswa": "C",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_003",
+          "jawaban_siswa": "B",
+          "status": "benar",
+          "nilai": 10
+        },
+        {
+          "soal_id": "soal_004",
+          "jawaban_siswa": "A",
+          "status": "salah",
+          "nilai": 0
+        },
+        {
+          "soal_id": "soal_005",
+          "jawaban_siswa": "C",
+          "status": "salah",
+          "nilai": 0
+        }
+      ],
+      "waktu_pengerjaan": 60,
+      "komentar_guru": "Perlu lebih teliti dalam membaca soal. Pelajari kembali identitas trigonometri.",
+      "diedit_oleh": "Diana Sari, S.Pd.",
+      "created_at": "2023-05-15T11:00:00Z",
+      "updated_at": "2023-05-15T16:30:00Z"
+    }
+  ],
+  "rekap_kelas": {
+    "xii_ipa_1": {
+      "total_siswa": 30,
+      "rata_rata": 78.5,
+      "nilai_tertinggi": 92,
+      "nilai_terendah": 65,
+      "distribusi_nilai": {
+        "A": 12,
+        "B": 10,
+        "C": 6,
+        "D": 2
+      },
+      "tingkat_kelulusan": "85%"
+    }
+  },
+  "statistik": {
+    "total_ulangan": 15,
+    "total_nilai": 2355,
+    "rata_rata_sekolah": 78.5,
+    "mata_pelajaran_terbaik": "Matematika",
+    "updated_at": "2023-05-15T17:00:00Z"
+  }
+}

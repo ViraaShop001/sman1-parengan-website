@@ -1,0 +1,136 @@
+{
+  "ulangan": [
+    {
+      "id": "ulangan_001",
+      "judul": "Ulangan Harian Matematika - Trigonometri",
+      "mata_pelajaran": "Matematika",
+      "jenis": "ulangan_harian",
+      "guru": "Diana Sari, S.Pd.",
+      "kelas": ["XII IPA 1"],
+      "tanggal": "2023-05-15",
+      "waktu": "07:00",
+      "durasi": 90,
+      "total_soal": 5,
+      "nilai_maksimal": 100,
+      "status": "selesai",
+      "soal": [
+        {
+          "id": "soal_001",
+          "nomor": 1,
+          "pertanyaan": "Nilai sin 30° adalah...",
+          "tipe": "pilihan_ganda",
+          "pilihan": [
+            {"id": "A", "teks": "1/2"},
+            {"id": "B", "teks": "√3/2"},
+            {"id": "C", "teks": "√2/2"},
+            {"id": "D", "teks": "1"}
+          ],
+          "jawaban_benar": "A",
+          "nilai": 10,
+          "pembahasan": "Sinus 30° memiliki nilai 1/2 berdasarkan tabel trigonometri standar."
+        },
+        {
+          "id": "soal_002",
+          "nomor": 2,
+          "pertanyaan": "Jika cos x = 1/2, maka nilai x adalah...",
+          "tipe": "pilihan_ganda",
+          "pilihan": [
+            {"id": "A", "teks": "30°"},
+            {"id": "B", "teks": "45°"},
+            {"id": "C", "teks": "60°"},
+            {"id": "D", "teks": "90°"}
+          ],
+          "jawaban_benar": "C",
+          "nilai": 10,
+          "pembahasan": "Cosinus 60° = 1/2. Nilai x yang memenuhi adalah 60°."
+        },
+        {
+          "id": "soal_003",
+          "nomor": 3,
+          "pertanyaan": "Nilai dari tan 45° adalah...",
+          "tipe": "pilihan_ganda",
+          "pilihan": [
+            {"id": "A", "teks": "0"},
+            {"id": "B", "teks": "1"},
+            {"id": "C", "teks": "√3"},
+            {"id": "D", "teks": "Tidak terdefinisi"}
+          ],
+          "jawaban_benar": "B",
+          "nilai": 10,
+          "pembahasan": "Tangen 45° = 1, karena sin 45°/cos 45° = (√2/2)/(√2/2) = 1."
+        },
+        {
+          "id": "soal_004",
+          "nomor": 4,
+          "pertanyaan": "Sin²x + cos²x = ...",
+          "tipe": "pilihan_ganda",
+          "pilihan": [
+            {"id": "A", "teks": "0"},
+            {"id": "B", "teks": "1"},
+            {"id": "C", "teks": "2"},
+            {"id": "D", "teks": "sin 2x"}
+          ],
+          "jawaban_benar": "B",
+          "nilai": 10,
+          "pembahasan": "Ini adalah identitas trigonometri dasar: sin²x + cos²x = 1."
+        },
+        {
+          "id": "soal_005",
+          "nomor": 5,
+          "pertanyaan": "Nilai dari sin 90° adalah...",
+          "tipe": "pilihan_ganda",
+          "pilihan": [
+            {"id": "A", "teks": "0"},
+            {"id": "B", "teks": "1/2"},
+            {"id": "C", "teks": "√2/2"},
+            {"id": "D", "teks": "1"}
+          ],
+          "jawaban_benar": "D",
+          "nilai": 10,
+          "pembahasan": "Sinus 90° = 1. Ini adalah nilai dasar trigonometri yang perlu dihafal."
+        }
+      ],
+      "instruksi": "Kerjakan soal dengan jujur dan teliti. Dilarang bekerja sama dengan peserta lain.",
+      "created_at": "2023-05-10T08:00:00Z",
+      "updated_at": "2023-05-15T16:30:00Z"
+    },
+    {
+      "id": "ulangan_002",
+      "judul": "Quiz Fisika - Hukum Newton",
+      "mata_pelajaran": "Fisika",
+      "jenis": "quiz",
+      "guru": "Budi Santoso, S.Pd.",
+      "kelas": ["XII IPA 1", "XII IPA 2"],
+      "tanggal": "2023-05-18",
+      "waktu": "10:30",
+      "durasi": 60,
+      "total_soal": 10,
+      "nilai_maksimal": 100,
+      "status": "akan_datang",
+      "soal": [],
+      "instruksi": "Quiz singkat tentang Hukum Newton. Waktu pengerjaan 60 menit.",
+      "created_at": "2023-05-12T14:00:00Z",
+      "updated_at": "2023-05-12T14:00:00Z"
+    },
+    {
+      "id": "ulangan_003",
+      "judul": "UTS Matematika Semester Genap",
+      "mata_pelajaran": "Matematika",
+      "jenis": "uts",
+      "guru": "Diana Sari, S.Pd.",
+      "kelas": ["XII IPA 1", "XII IPA 2", "XI IPA 1"],
+      "tanggal": "2023-05-20",
+      "waktu": "07:00",
+      "durasi": 120,
+      "total_soal": 25,
+      "nilai_maksimal": 100,
+      "status": "akan_datang",
+      "soal": [],
+      "instruksi": "Ujian Tengah Semester Matematika. Kerjakan dengan sungguh-sungguh.",
+      "created_at": "2023-05-01T09:00:00Z",
+      "updated_at": "2023-05-01T09:00:00Z"
+    }
+  ],
+  "total_ulangan": 3,
+  "updated_at": "2023-05-15T17:00:00Z"
+}
