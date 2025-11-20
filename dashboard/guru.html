@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Guru - SMAN 1 Parengan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4d8c;
+            --secondary: #ffc107;
+            --accent: #28a745;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .navbar {
+            background-color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar {
+            background-color: white;
+            min-height: calc(100vh - 56px);
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-sticky {
+            position: sticky;
+            top: 56px;
+            height: calc(100vh - 56px);
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+        
+        .sidebar .nav-link {
+            color: var(--dark);
+            padding: 12px 20px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .sidebar .nav-link i {
+            width: 20px;
+            text-align: center;
+            margin-right: 10px;
+        }
+        
+        .main-content {
+            padding: 20px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: none;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .table th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .user-info {
+            background: linear-gradient(135deg, var(--primary), #2c5fa8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+        }
+        
+        .quick-action {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .quick-action:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .action-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>SMAN 1 PARENGAN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-chalkboard-teacher me-1"></i> Bu Sari, S.Pd.
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../index.html"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="guru.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-user"></i> Profil Saya
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/jadwal-pelajaran.html">
+                                <i class="fas fa-calendar-alt"></i> Jadwal Mengajar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../ulangan/guru/buat-ulangan.html">
+                                <i class="fas fa-plus-circle"></i> Buat Ulangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../ulangan/guru/input-soal.html">
+                                <i class="fas fa-edit"></i> Input Soal
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../ulangan/guru/koreksi.html">
+                                <i class="fas fa-check-double"></i> Koreksi Ulangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../ulangan/guru/rekap.html">
+                                <i class="fas fa-chart-bar"></i> Rekap Nilai
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages/berita.html">
+                                <i class="fas fa-newspaper"></i> Berita Sekolah
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">
+                                <i class="fas fa-sign-out-alt"></i> Kembali ke Beranda
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <!-- User Info -->
+                <div class="user-info">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avatar" class="user-avatar">
+                        </div>
+                        <div class="col">
+                            <h3>Diana Sari, S.Pd.</h3>
+                            <p class="mb-1">Guru Matematika | NIP: 198504152006042001</p>
+                            <p class="mb-0">Wali Kelas: XII IPA 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="stat-number">8</div>
+                            <p>Ulangan Dibuat</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-number">5</div>
+                            <p>Ulangan Dikoreksi</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-number">120</div>
+                            <p>Siswa Diajar</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chalkboard"></i>
+                            </div>
+                            <div class="stat-number">4</div>
+                            <p>Kelas Diajar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h4 class="mb-3">Aksi Cepat</h4>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="quick-action">
+                            <div class="action-icon">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <h5>Buat Ulangan</h5>
+                            <p>Buat ulangan baru untuk siswa</p>
+                            <a href="../ulangan/guru/buat-ulangan.html" class="btn btn-primary btn-sm">Mulai</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="quick-action">
+                            <div class="action-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <h5>Input Soal</h5>
+                            <p>Tambah soal ke bank soal</p>
+                            <a href="../ulangan/guru/input-soal.html" class="btn btn-primary btn-sm">Mulai</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="quick-action">
+                            <div class="action-icon">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <h5>Koreksi</h5>
+                            <p>Koreksi ulangan siswa</p>
+                            <a href="../ulangan/guru/koreksi.html" class="btn btn-primary btn-sm">Mulai</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="quick-action">
+                            <div class="action-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h5>Rekap Nilai</h5>
+                            <p>Lihat rekap nilai siswa</p>
+                            <a href="../ulangan/guru/rekap.html" class="btn btn-primary btn-sm">Mulai</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Ulangan Terbaru -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="dashboard-card">
+                            <h4 class="mb-4"><i class="fas fa-clipboard-list text-primary me-2"></i> Ulangan Terbaru</h4>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Judul Ulangan</th>
+                                            <th>Kelas</th>
+                                            <th>Tanggal</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Ulangan Harian Matematika</td>
+                                            <td>XII IPA 1</td>
+                                            <td>15 Mei 2023</td>
+                                            <td><span class="badge bg-warning">Belum Dikoreksi</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Quiz Trigonometri</td>
+                                            <td>XI IPA 1</td>
+                                            <td>12 Mei 2023</td>
+                                            <td><span class="badge bg-success">Telah Dikoreksi</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>UTS Matematika</td>
+                                            <td>X IPA 1</td>
+                                            <td>10 Mei 2023</td>
+                                            <td><span class="badge bg-success">Telah Dikoreksi</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ulangan Geometri</td>
+                                            <td>XII IPA 2</td>
+                                            <td>8 Mei 2023</td>
+                                            <td><span class="badge bg-success">Telah Dikoreksi</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <a href="../ulangan/guru/buat-ulangan.html" class="btn btn-primary mt-3">Lihat Semua Ulangan</a>
+                        </div>
+                    </div>
+
+                    <!-- Jadwal Mengajar Hari Ini -->
+                    <div class="col-lg-6 mb-4">
+                        <div class="dashboard-card">
+                            <h4 class="mb-4"><i class="fas fa-calendar-day text-primary me-2"></i> Jadwal Mengajar Hari Ini</h4>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Waktu</th>
+                                            <th>Kelas</th>
+                                            <th>Mata Pelajaran</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>07:00 - 08:30</td>
+                                            <td>XII IPA 1</td>
+                                            <td>Matematika</td>
+                                        </tr>
+                                        <tr>
+                                            <td>08:30 - 10:00</td>
+                                            <td>XI IPA 1</td>
+                                            <td>Matematika</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10:30 - 12:00</td>
+                                            <td>X IPA 1</td>
+                                            <td>Matematika</td>
+                                        </tr>
+                                        <tr>
+                                            <td>13:00 - 14:30</td>
+                                            <td>XII IPA 2</td>
+                                            <td>Matematika</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <a href="../pages/jadwal-pelajaran.html" class="btn btn-primary mt-3">Lihat Jadwal Lengkap</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pengumuman -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="dashboard-card">
+                            <h4 class="mb-4"><i class="fas fa-bullhorn text-primary me-2"></i> Pengumuman Guru</h4>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Rapat Dewan Guru</h5>
+                                        <small>2 hari yang lalu</small>
+                                    </div>
+                                    <p class="mb-1">Rapat dewan guru akan dilaksanakan pada hari Jumat, 19 Mei 2023 pukul 13:00 di ruang guru.</p>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Deadline Input Nilai</h5>
+                                        <small>1 minggu yang lalu</small>
+                                    </div>
+                                    <p class="mb-1">Batas akhir input nilai UTS adalah tanggal 25 Mei 2023. Harap diperhatikan.</p>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Workshop Pembelajaran Digital</h5>
+                                        <small>2 minggu yang lalu</small>
+                                    </div>
+                                    <p class="mb-1">Workshop pembelajaran digital akan diadakan pada tanggal 22 Mei 2023. Daftarkan diri melalui wakil kurikulum.</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
