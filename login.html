@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SMAN 1 Parengan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4d8c;
+            --secondary: #ffc107;
+            --accent: #28a745;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        .login-container {
+            min-height: 100vh;
+            background: linear-gradient(rgba(26, 77, 140, 0.8), rgba(26, 77, 140, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .login-header h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .login-body {
+            padding: 30px;
+        }
+        
+        .form-control {
+            border-radius: 5px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(26, 77, 140, 0.25);
+        }
+        
+        .role-selector {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        
+        .role-option {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .role-option.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .role-option:not(.active):hover {
+            background-color: #e9ecef;
+        }
+        
+        .btn-login {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-login:hover {
+            background-color: #153a6b;
+        }
+        
+        .login-footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background-color: #f8f9fa;
+        }
+        
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h3><i class="fas fa-graduation-cap me-2"></i>SMAN 1 PARENGAN</h3>
+                <p class="mb-0">Silakan login untuk mengakses sistem</p>
+            </div>
+            <div class="login-body">
+                <div class="role-selector">
+                    <div class="role-option active" data-role="siswa">Siswa</div>
+                    <div class="role-option" data-role="guru">Guru</div>
+                    <div class="role-option" data-role="admin">Admin</div>
+                </div>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username / NIS</label>
+                        <input type="text" class="form-control" id="username" placeholder="Masukkan username atau NIS" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Masukkan password" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Ingat saya</label>
+                    </div>
+                    <button type="submit" class="btn-login">Login</button>
+                </form>
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left me-2"></i> Kembali ke Beranda
+                </a>
+            </div>
+            <div class="login-footer">
+                <p class="mb-0">Butuh bantuan? <a href="pages/kontak.html">Hubungi Admin</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Role selector functionality
+        document.querySelectorAll('.role-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.role-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const role = document.querySelector('.role-option.active').dataset.role;
+            
+            // In a real application, this would be an API call
+            // For demo purposes, we'll just redirect based on role
+            if (username && password) {
+                switch(role) {
+                    case 'siswa':
+                        window.location.href = 'dashboard/siswa.html';
+                        break;
+                    case 'guru':
+                        window.location.href = 'dashboard/guru.html';
+                        break;
+                    case 'admin':
+                        window.location.href = 'dashboard/admin.html';
+                        break;
+                }
+            } else {
+                alert('Harap isi username dan password!');
+            }
+        });
+    </script>
+</body>
+</html>
