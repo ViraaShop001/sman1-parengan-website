@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koreksi Ulangan - SMAN 1 Parengan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/ulangan.css">
+    <style>
+        .correction-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        .student-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .student-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f1f1f1;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .student-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .student-item.active {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .student-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .student-info {
+            flex: 1;
+        }
+        
+        .student-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .student-details {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .student-score {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .question-correction {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .answer-review {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        .correct-answer {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .student-answer {
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .answer-correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .answer-wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .score-input {
+            width: 80px;
+        }
+        
+        .progress-correction {
+            height: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>SMAN 1 PARENGAN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-chalkboard-teacher me-1"></i> Bu Sari, S.Pd.
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../../index.html"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../dashboard/guru.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="buat-ulangan.html">
+                                <i class="fas fa-plus-circle"></i> Buat Ulangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="input-soal.html">
+                                <i class="fas fa-edit"></i> Input Soal
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="koreksi.html">
+                                <i class="fas fa-check-double"></i> Koreksi Ulangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rekap.html">
+                                <i class="fas fa-chart-bar"></i> Rekap Nilai
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../pages/jadwal-pelajaran.html">
+                                <i class="fas fa-calendar-alt"></i> Jadwal Mengajar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../index.html">
+                                <i class="fas fa-sign-out-alt"></i> Kembali ke Beranda
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <!-- User Info -->
+                <div class="user-info">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avatar" class="user-avatar">
+                        </div>
+                        <div class="col">
+                            <h3>Diana Sari, S.Pd.</h3>
+                            <p class="mb-1">Guru Matematika | NIP: 198504152006042001</p>
+                            <p class="mb-0">Wali Kelas: XII IPA 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Student List -->
+                    <div class="col-lg-4 mb-4">
+                        <div class="correction-card">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4><i class="fas fa-users text-primary me-2"></i> Daftar Siswa</h4>
+                                <span class="badge bg-primary" id="correctedCount">0/30</span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Cari siswa...">
+                            </div>
+                            
+                            <div class="student-list">
+                                <!-- Student 1 -->
+                                <div class="student-item active" data-student="1">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Student" class="student-avatar">
+                                    <div class="student-info">
+                                        <div class="student-name">Ahmad Fauzi</div>
+                                        <div class="student-details">XII IPA 1 • NIS: 20210012</div>
+                                    </div>
+                                    <div class="student-score">85</div>
+                                </div>
+                                
+                                <!-- Student 2 -->
+                                <div class="student-item" data-student="2">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Student" class="student-avatar">
+                                    <div class="student-info">
+                                        <div class="student-name">Siti Rahma</div>
+                                        <div class="student-details">XII IPA 1 • NIS: 20210013</div>
+                                    </div>
+                                    <div class="student-score">92</div>
+                                </div>
+                                
+                                <!-- Student 3 -->
+                                <div class="student-item" data-student="3">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Student" class="student-avatar">
+                                    <div class="student-info">
+                                        <div class="student-name">Budi Santoso</div>
+                                        <div class="student-details">XII IPA 1 • NIS: 20210014</div>
+                                    </div>
+                                    <div class="student-score">78</div>
+                                </div>
+                                
+                                <!-- Student 4 -->
+                                <div class="student-item" data-student="4">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Student" class="student-avatar">
+                                    <div class="student-info">
+                                        <div class="student-name">Dewi Lestari</div>
+                                        <div class="student-details">XII IPA 1 • NIS: 20210015</div>
+                                    </div>
+                                    <div class="student-score">-</div>
+                                </div>
+                                
+                                <!-- Student 5 -->
+                                <div class="student-item" data-student="5">
+                                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Student" class="student-avatar">
+                                    <div class="student-info">
+                                        <div class="student-name">Rizki Pratama</div>
+                                        <div class="student-details">XII IPA 1 • NIS: 20210016</div>
+                                    </div>
+                                    <div class="student-score">-</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span>Progress Koreksi:</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="progress progress-correction">
+                                    <div class="progress-bar bg-success" style="width: 40%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Correction Area -->
+                    <div class="col-lg-8">
+                        <div class="correction-card">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4><i class="fas fa-check-double text-primary me-2"></i> Koreksi Ulangan</h4>
+                                <div>
+                                    <span class="badge bg-primary me-2">Matematika</span>
+                                    <span class="badge bg-secondary">Ulangan Harian</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Student Info -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <h5 id="currentStudent">Ahmad Fauzi</h5>
+                                    <p class="text-muted mb-1" id="studentDetails">XII IPA 1 • NIS: 20210012</p>
+                                    <p class="mb-0">Waktu pengerjaan: <strong>45 menit</strong></p>
+                                </div>
+                                <div class="col-md-6 text-md-end">
+                                    <div class="mb-2">
+                                        <span class="fw-bold">Nilai Sementara:</span>
+                                        <span class="fs-4 text-primary ms-2" id="currentScore">85</span>
+                                    </div>
+                                    <div class="text-muted">Tanggal: 15 Mei 2023</div>
+                                </div>
+                            </div>
+
+                            <!-- Questions Correction -->
+                            <div id="questionsCorrection">
+                                <!-- Question 1 -->
+                                <div class="question-correction">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <h6>Soal 1: Nilai sin 30° adalah...</h6>
+                                        <span class="badge bg-success">Benar</span>
+                                    </div>
+                                    <div class="answer-review">
+                                        <div class="mb-2">
+                                            <strong>Jawaban Siswa:</strong> 
+                                            <span class="student-answer answer-correct">A. 1/2</span>
+                                        </div>
+                                        <div class="mb-2">
+                                            <strong>Jawaban Benar:</strong> 
+                                            <span class="correct-answer">A. 1/2</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label class="form-label me-2 mb-0">Nilai:</label>
+                                            <input type="number" class="form-control score-input" value="10" min="0" max="10">
+                                            <span class="text-muted ms-2">/ 10</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Question 2 -->
+                                <div class="question-correction">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <h6>Soal 2: Jika cos x = 1/2, maka nilai x adalah...</h6>
+                                        <span class="badge bg-success">Benar</span>
+                                    </div>
+                                    <div class="answer-review">
+                                        <div class="mb-2">
+                                            <strong>Jawaban Siswa:</strong> 
+                                            <span class="student-answer answer-correct">C. 60°</span>
+                                        </div>
+                                        <div class="mb-2">
+                                            <strong>Jawaban Benar:</strong> 
+                                            <span class="correct-answer">C. 60°</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label class="form-label me-2 mb-0">Nilai:</label>
+                                            <input type="number" class="form-control score-input" value="10" min="0" max="10">
+                                            <span class="text-muted ms-2">/ 10</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Question 3 -->
+                                <div class="question-correction">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <h6>Soal 3: Nilai dari tan 45° adalah...</h6>
+                                        <span class="badge bg-success">Benar</span>
+                                    </div>
+                                    <div class="answer-review">
+                                        <div class="mb-2">
+                                            <strong>Jawaban Siswa:</strong> 
+                                            <span class="student-answer answer-correct">B. 1</span>
+                                        </div>
+                                        <div class="mb-2">
+                                            <strong>Jawaban Benar:</strong> 
+                                            <span class="correct-answer">B. 1</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label class="form-label me-2 mb-0">Nilai:</label>
+                                            <input type="number" class="form-control score-input" value="10" min="0" max="10">
+                                            <span class="text-muted ms-2">/ 10</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Question 4 -->
+                                <div class="question-correction">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <h6>Soal 4: Sin²x + cos²x = ...</h6>
+                                        <span class="badge bg-success">Benar</span>
+                                    </div>
+                                    <div class="answer-review">
+                                        <div class="mb-2">
+                                            <strong>Jawaban Siswa:</strong> 
+                                            <span class="student-answer answer-correct">B. 1</span>
+                                        </div>
+                                        <div class="mb-2">
+                                            <strong>Jawaban Benar:</strong> 
+                                            <span class="correct-answer">B. 1</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label class="form-label me-2 mb-0">Nilai:</label>
+                                            <input type="number" class="form-control score-input" value="10" min="0" max="10">
+                                            <span class="text-muted ms-2">/ 10</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Question 5 -->
+                                <div class="question-correction">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <h6>Soal 5: Nilai dari sin 90° adalah...</h6>
+                                        <span class="badge bg-danger">Salah</span>
+                                    </div>
+                                    <div class="answer-review">
+                                        <div class="mb-2">
+                                            <strong>Jawaban Siswa:</strong> 
+                                            <span class="student-answer answer-wrong">C. √2/2</span>
+                                        </div>
+                                        <div class="mb-2">
+                                            <strong>Jawaban Benar:</strong> 
+                                            <span class="correct-answer">D. 1</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <label class="form-label me-2 mb-0">Nilai:</label>
+                                            <input type="number" class="form-control score-input" value="0" min="0" max="10">
+                                            <span class="text-muted ms-2">/ 10</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Teacher Comments -->
+                            <div class="mt-4">
+                                <label for="teacherComments" class="form-label">Komentar Guru</label>
+                                <textarea class="form-control" id="teacherComments" rows="3" placeholder="Berikan komentar atau saran untuk siswa...">Hasil yang sangat baik! Pertahankan prestasinya. Perhatikan kembali nilai dasar trigonometri untuk soal nomor 5.</textarea>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="d-flex justify-content-between mt-4">
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-arrow-left me-2"></i>Sebelumnya
+                                </button>
+                                <div>
+                                    <button class="btn btn-outline-primary me-2">
+                                        <i class="fas fa-save me-2"></i>Simpan Sementara
+                                    </button>
+                                    <button class="btn btn-success">
+                                        <i class="fas fa-check me-2"></i>Selesaikan Koreksi
+                                    </button>
+                                </div>
+                                <button class="btn btn-outline-secondary">
+                                    Selanjutnya<i class="fas fa-arrow-right ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Student selection
+        document.querySelectorAll('.student-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                document.querySelectorAll('.student-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Update student info
+                const studentName = this.querySelector('.student-name').textContent;
+                const studentDetails = this.querySelector('.student-details').textContent;
+                const studentScore = this.querySelector('.student-score').textContent;
+                
+                document.getElementById('currentStudent').textContent = studentName;
+                document.getElementById('studentDetails').textContent = studentDetails;
+                document.getElementById('currentScore').textContent = studentScore;
+            });
+        });
+
+        // Update total score when input changes
+        document.querySelectorAll('.score-input').forEach(input => {
+            input.addEventListener('change', updateTotalScore);
+        });
+
+        function updateTotalScore() {
+            let totalScore = 0;
+            document.querySelectorAll('.score-input').forEach(input => {
+                totalScore += parseInt(input.value) || 0;
+            });
+            document.getElementById('currentScore').textContent = totalScore;
+        }
+    </script>
+</body>
+</html>

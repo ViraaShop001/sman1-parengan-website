@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Soal - SMAN 1 Parengan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../../assets/css/ulangan.css">
+    <style>
+        .question-bank {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        .bank-search {
+            margin-bottom: 20px;
+        }
+        
+        .bank-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .question-preview {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .question-preview:hover {
+            border-color: var(--primary);
+            background-color: #f8f9fa;
+        }
+        
+        .question-preview.selected {
+            border-color: var(--primary);
+            background-color: #e3f2fd;
+        }
+        
+        .preview-options {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .option-preview {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .option-letter-preview {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            margin-right: 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .correct-option {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .question-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 10px;
+        }
+        
+        .selected-questions {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 20px;
+        }
+        
+        .selected-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .selected-item {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        .selected-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>SMAN 1 PARENGAN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-chalkboard-teacher me-1"></i> Bu Sari, S.Pd.
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../../index.html"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../dashboard/guru.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="buat-ulangan.html">
+                                <i class="fas fa-plus-circle"></i> Buat Ulangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="input-soal.html">
+                                <i class="fas fa-edit"></i> Input Soal
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="koreksi.html">
+                                <i class="fas fa-check-double"></i> Koreksi Ulangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rekap.html">
+                                <i class="fas fa-chart-bar"></i> Rekap Nilai
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../pages/jadwal-pelajaran.html">
+                                <i class="fas fa-calendar-alt"></i> Jadwal Mengajar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../index.html">
+                                <i class="fas fa-sign-out-alt"></i> Kembali ke Beranda
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <!-- User Info -->
+                <div class="user-info">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avatar" class="user-avatar">
+                        </div>
+                        <div class="col">
+                            <h3>Diana Sari, S.Pd.</h3>
+                            <p class="mb-1">Guru Matematika | NIP: 198504152006042001</p>
+                            <p class="mb-0">Wali Kelas: XII IPA 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Question Bank -->
+                    <div class="col-lg-8 mb-4">
+                        <div class="question-bank">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4><i class="fas fa-database text-primary me-2"></i> Bank Soal</h4>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuestionModal">
+                                    <i class="fas fa-plus me-2"></i>Tambah Soal Baru
+                                </button>
+                            </div>
+
+                            <!-- Search and Filters -->
+                            <div class="bank-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Cari soal...">
+                                    <button class="btn btn-outline-primary" type="button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bank-filters">
+                                <select class="form-select" style="width: auto;">
+                                    <option>Semua Mata Pelajaran</option>
+                                    <option>Matematika</option>
+                                    <option>Fisika</option>
+                                    <option>Kimia</option>
+                                </select>
+                                <select class="form-select" style="width: auto;">
+                                    <option>Semua Tingkat Kesulitan</option>
+                                    <option>Mudah</option>
+                                    <option>Sedang</option>
+                                    <option>Sulit</option>
+                                </select>
+                                <select class="form-select" style="width: auto;">
+                                    <option>Semua Jenis</option>
+                                    <option>Pilihan Ganda</option>
+                                    <option>Essay</option>
+                                    <option>True/False</option>
+                                </select>
+                            </div>
+
+                            <!-- Question List -->
+                            <div id="questionBankList">
+                                <!-- Question 1 -->
+                                <div class="question-preview" data-id="1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h6>Nilai sin 30° adalah...</h6>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="preview-options">
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">A</span>
+                                            <span>1/2</span>
+                                            <span class="correct-option ms-2">✓ Benar</span>
+                                        </div>
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">B</span>
+                                            <span>√3/2</span>
+                                        </div>
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">C</span>
+                                            <span>√2/2</span>
+                                        </div>
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">D</span>
+                                            <span>1</span>
+                                        </div>
+                                    </div>
+                                    <div class="question-meta">
+                                        <span><i class="fas fa-book me-1"></i> Matematika</span>
+                                        <span><i class="fas fa-star me-1"></i> Sedang</span>
+                                        <span><i class="fas fa-clock me-1"></i> 10 poin</span>
+                                        <span><i class="fas fa-calendar me-1"></i> 12 Mei 2023</span>
+                                    </div>
+                                </div>
+
+                                <!-- Question 2 -->
+                                <div class="question-preview" data-id="2">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h6>Jika cos x = 1/2, maka nilai x adalah...</h6>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="preview-options">
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">A</span>
+                                            <span>30°</span>
+                                        </div>
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">B</span>
+                                            <span>45°</span>
+                                        </div>
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">C</span>
+                                            <span>60°</span>
+                                            <span class="correct-option ms-2">✓ Benar</span>
+                                        </div>
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">D</span>
+                                            <span>90°</span>
+                                        </div>
+                                    </div>
+                                    <div class="question-meta">
+                                        <span><i class="fas fa-book me-1"></i> Matematika</span>
+                                        <span><i class="fas fa-star me-1"></i> Mudah</span>
+                                        <span><i class="fas fa-clock me-1"></i> 10 poin</span>
+                                        <span><i class="fas fa-calendar me-1"></i> 10 Mei 2023</span>
+                                    </div>
+                                </div>
+
+                                <!-- Question 3 -->
+                                <div class="question-preview" data-id="3">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h6>Turunan pertama dari f(x) = 3x² + 2x - 5 adalah...</h6>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="preview-options">
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">A</span>
+                                            <span>6x + 2</span>
+                                            <span class="correct-option ms-2">✓ Benar</span>
+                                        </div>
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">B</span>
+                                            <span>3x + 2</span>
+                                        </div>
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">C</span>
+                                            <span>6x</span>
+                                        </div>
+                                        <div class="option-preview">
+                                            <span class="option-letter-preview">D</span>
+                                            <span>3x² + 2</span>
+                                        </div>
+                                    </div>
+                                    <div class="question-meta">
+                                        <span><i class="fas fa-book me-1"></i> Matematika</span>
+                                        <span><i class="fas fa-star me-1"></i> Sedang</span>
+                                        <span><i class="fas fa-clock me-1"></i> 15 poin</span>
+                                        <span><i class="fas fa-calendar me-1"></i> 8 Mei 2023</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pagination -->
+                            <nav aria-label="Question pagination" class="mt-4">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">Previous</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Selected Questions -->
+                    <div class="col-lg-4">
+                        <div class="selected-questions">
+                            <h5 class="mb-3"><i class="fas fa-clipboard-list text-primary me-2"></i> Soal Terpilih</h5>
+                            <p class="text-muted">Pilih soal dari bank soal untuk ditambahkan ke ulangan.</p>
+                            
+                            <div class="selected-list" id="selectedQuestionsList">
+                                <!-- Selected questions will appear here -->
+                            </div>
+                            
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Total Soal:</span>
+                                    <strong id="totalSelected">0</strong>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span>Total Nilai:</span>
+                                    <strong id="totalScore">0</strong>
+                                </div>
+                                <button class="btn btn-success w-100" disabled id="addToExamBtn">
+                                    <i class="fas fa-plus me-2"></i>Tambah ke Ulangan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Question Modal -->
+    <div class="modal fade" id="addQuestionModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Soal Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addQuestionForm">
+                        <div class="mb-3">
+                            <label for="questionSubject" class="form-label">Mata Pelajaran</label>
+                            <select class="form-select" id="questionSubject" required>
+                                <option value="">Pilih Mata Pelajaran</option>
+                                <option value="matematika">Matematika</option>
+                                <option value="fisika">Fisika</option>
+                                <option value="kimia">Kimia</option>
+                                <option value="biologi">Biologi</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="questionType" class="form-label">Jenis Soal</label>
+                            <select class="form-select" id="questionType" required>
+                                <option value="">Pilih Jenis</option>
+                                <option value="pilihan-ganda">Pilihan Ganda</option>
+                                <option value="essay">Essay</option>
+                                <option value="true-false">True/False</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="questionDifficulty" class="form-label">Tingkat Kesulitan</label>
+                            <select class="form-select" id="questionDifficulty" required>
+                                <option value="">Pilih Tingkat</option>
+                                <option value="mudah">Mudah</option>
+                                <option value="sedang">Sedang</option>
+                                <option value="sulit">Sulit</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="questionText" class="form-label">Teks Soal</label>
+                            <textarea class="form-control" id="questionText" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="mb-3" id="optionsContainer">
+                            <label class="form-label">Pilihan Jawaban</label>
+                            <div class="option-item-creator mb-2">
+                                <span class="option-letter-creator">A</span>
+                                <input type="text" class="form-control" placeholder="Jawaban A" required>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="radio" name="correctAnswer" value="A" required>
+                                    <label class="form-check-label">Benar</label>
+                                </div>
+                            </div>
+                            <div class="option-item-creator mb-2">
+                                <span class="option-letter-creator">B</span>
+                                <input type="text" class="form-control" placeholder="Jawaban B" required>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="radio" name="correctAnswer" value="B">
+                                    <label class="form-check-label">Benar</label>
+                                </div>
+                            </div>
+                            <div class="option-item-creator mb-2">
+                                <span class="option-letter-creator">C</span>
+                                <input type="text" class="form-control" placeholder="Jawaban C" required>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="radio" name="correctAnswer" value="C">
+                                    <label class="form-check-label">Benar</label>
+                                </div>
+                            </div>
+                            <div class="option-item-creator mb-2">
+                                <span class="option-letter-creator">D</span>
+                                <input type="text" class="form-control" placeholder="Jawaban D" required>
+                                <div class="form-check ms-2">
+                                    <input class="form-check-input" type="radio" name="correctAnswer" value="D">
+                                    <label class="form-check-label">Benar</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="questionScore" class="form-label">Nilai Soal</label>
+                            <input type="number" class="form-control" id="questionScore" min="1" max="100" value="10" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="questionExplanation" class="form-label">Pembahasan (Opsional)</label>
+                            <textarea class="form-control" id="questionExplanation" rows="2"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="saveQuestionBtn">Simpan Soal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Selected questions array
+        let selectedQuestions = [];
+
+        // Initialize question selection
+        document.addEventListener('DOMContentLoaded', function() {
+            // Question selection
+            document.querySelectorAll('.question-preview').forEach(preview => {
+                preview.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                    const questionId = this.getAttribute('data-id');
+                    
+                    if (this.classList.contains('selected')) {
+                        addToSelected(questionId, this);
+                    } else {
+                        removeFromSelected(questionId);
+                    }
+                    
+                    updateSelectedList();
+                });
+            });
+
+            // Save question
+            document.getElementById('saveQuestionBtn').addEventListener('click', function() {
+                const form = document.getElementById('addQuestionForm');
+                if (form.checkValidity()) {
+                    alert('Soal berhasil disimpan!');
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addQuestionModal'));
+                    modal.hide();
+                    form.reset();
+                } else {
+                    form.reportValidity();
+                }
+            });
+        });
+
+        // Add question to selected
+        function addToSelected(questionId, element) {
+            if (!selectedQuestions.includes(questionId)) {
+                selectedQuestions.push(questionId);
+            }
+        }
+
+        // Remove question from selected
+        function removeFromSelected(questionId) {
+            const index = selectedQuestions.indexOf(questionId);
+            if (index > -1) {
+                selectedQuestions.splice(index, 1);
+            }
+        }
+
+        // Update selected questions list
+        function updateSelectedList() {
+            const listContainer = document.getElementById('selectedQuestionsList');
+            const totalSelected = document.getElementById('totalSelected');
+            const totalScore = document.getElementById('totalScore');
+            const addToExamBtn = document.getElementById('addToExamBtn');
+            
+            listContainer.innerHTML = '';
+            
+            if (selectedQuestions.length === 0) {
+                listContainer.innerHTML = '<p class="text-muted text-center">Belum ada soal yang dipilih</p>';
+                addToExamBtn.disabled = true;
+            } else {
+                selectedQuestions.forEach(questionId => {
+                    const questionElement = document.querySelector(`[data-id="${questionId}"]`);
+                    const questionText = questionElement.querySelector('h6').textContent;
+                    
+                    const selectedItem = document.createElement('div');
+                    selectedItem.className = 'selected-item';
+                    selectedItem.innerHTML = `
+                        <div class="flex-grow-1">
+                            <strong>${questionText}</strong>
+                            <div class="text-muted small">10 poin</div>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger remove-btn" data-id="${questionId}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    
+                    listContainer.appendChild(selectedItem);
+                });
+                
+                addToExamBtn.disabled = false;
+            }
+            
+            totalSelected.textContent = selectedQuestions.length;
+            totalScore.textContent = selectedQuestions.length * 10; // Assuming 10 points per question
+            
+            // Add remove event listeners
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const questionId = this.getAttribute('data-id');
+                    removeFromSelected(questionId);
+                    document.querySelector(`[data-id="${questionId}"]`).classList.remove('selected');
+                    updateSelectedList();
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Ulangan - SMAN 1 Parengan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4d8c;
+            --secondary: #ffc107;
+            --accent: #28a745;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .navbar {
+            background-color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar {
+            background-color: white;
+            min-height: calc(100vh - 56px);
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-sticky {
+            position: sticky;
+            top: 56px;
+            height: calc(100vh - 56px);
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+        
+        .sidebar .nav-link {
+            color: var(--dark);
+            padding: 12px 20px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .sidebar .nav-link i {
+            width: 20px;
+            text-align: center;
+            margin-right: 10px;
+        }
+        
+        .main-content {
+            padding: 20px;
+        }
+        
+        .form-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        .question-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .user-info {
+            background: linear-gradient(135deg, var(--primary), #2c5fa8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+        }
+        
+        .option-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--light);
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>SMAN 1 PARENGAN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-chalkboard-teacher me-1"></i> Bu Sari, S.Pd.
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../../index.html"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../dashboard/guru.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="buat-ulangan.html">
+                                <i class="fas fa-plus-circle"></i> Buat Ulangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="input-soal.html">
+                                <i class="fas fa-edit"></i> Input Soal
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="koreksi.html">
+                                <i class="fas fa-check-double"></i> Koreksi Ulangan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="rekap.html">
+                                <i class="fas fa-chart-bar"></i> Rekap Nilai
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../pages/jadwal-pelajaran.html">
+                                <i class="fas fa-calendar-alt"></i> Jadwal Mengajar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../index.html">
+                                <i class="fas fa-sign-out-alt"></i> Kembali ke Beranda
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <!-- User Info -->
+                <div class="user-info">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avatar" class="user-avatar">
+                        </div>
+                        <div class="col">
+                            <h3>Diana Sari, S.Pd.</h3>
+                            <p class="mb-1">Guru Matematika | NIP: 198504152006042001</p>
+                            <p class="mb-0">Wali Kelas: XII IPA 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Create Exam Form -->
+                <div class="form-card">
+                    <h3 class="mb-4"><i class="fas fa-plus-circle text-primary me-2"></i> Buat Ulangan Baru</h3>
+                    
+                    <form id="createExamForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="examTitle" class="form-label">Judul Ulangan</label>
+                                    <input type="text" class="form-control" id="examTitle" placeholder="Contoh: Ulangan Harian Matematika - Trigonometri" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Mata Pelajaran</label>
+                                    <select class="form-select" id="subject" required>
+                                        <option value="">Pilih Mata Pelajaran</option>
+                                        <option value="matematika">Matematika</option>
+                                        <option value="fisika">Fisika</option>
+                                        <option value="kimia">Kimia</option>
+                                        <option value="biologi">Biologi</option>
+                                        <option value="bahasa-indonesia">Bahasa Indonesia</option>
+                                        <option value="bahasa-inggris">Bahasa Inggris</option>
+                                        <option value="sejarah">Sejarah</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="examType" class="form-label">Jenis Ulangan</label>
+                                    <select class="form-select" id="examType" required>
+                                        <option value="">Pilih Jenis</option>
+                                        <option value="ulangan-harian">Ulangan Harian</option>
+                                        <option value="quiz">Quiz</option>
+                                        <option value="uts">UTS</option>
+                                        <option value="uas">UAS</option>
+                                        <option value="tugas">Tugas</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="examDate" class="form-label">Tanggal Ulangan</label>
+                                    <input type="date" class="form-control" id="examDate" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="examTime" class="form-label">Waktu Ulangan</label>
+                                    <input type="time" class="form-control" id="examTime" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="duration" class="form-label">Durasi (menit)</label>
+                                    <input type="number" class="form-control" id="duration" min="5" max="180" value="90" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="totalQuestions" class="form-label">Jumlah Soal</label>
+                                    <input type="number" class="form-control" id="totalQuestions" min="1" max="100" value="10" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="maxScore" class="form-label">Nilai Maksimal</label>
+                                    <input type="number" class="form-control" id="maxScore" min="1" max="100" value="100" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="classes" class="form-label">Kelas yang Mengikuti</label>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="classX1" value="X IPA 1">
+                                        <label class="form-check-label" for="classX1">X IPA 1</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="classX2" value="X IPA 2">
+                                        <label class="form-check-label" for="classX2">X IPA 2</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="classXI1" value="XI IPA 1">
+                                        <label class="form-check-label" for="classXI1">XI IPA 1</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="classXII1" value="XII IPA 1">
+                                        <label class="form-check-label" for="classXII1">XII IPA 1</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="instructions" class="form-label">Instruksi Ulangan</label>
+                            <textarea class="form-control" id="instructions" rows="3" placeholder="Masukkan instruksi atau petunjuk pengerjaan ulangan"></textarea>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary">Simpan Draft</button>
+                            <button type="submit" class="btn btn-primary">Buat Ulangan</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Question List Preview -->
+                <div class="form-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4><i class="fas fa-list-ol text-primary me-2"></i> Daftar Soal</h4>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addQuestionModal">
+                            <i class="fas fa-plus me-2"></i>Tambah Soal
+                        </button>
+                    </div>
+                    
+                    <div id="questionList">
+                        <!-- Question 1 -->
+                        <div class="question-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5>Soal 1</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <p class="fw-bold">Nilai sin 30° adalah...</p>
+                            <div class="options">
+                                <div class="option-item">
+                                    <span class="option-letter">A</span>
+                                    <span>1/2</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-letter">B</span>
+                                    <span>√3/2</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-letter">C</span>
+                                    <span>√2/2</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-letter">D</span>
+                                    <span>1</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <span class="badge bg-success">Jawaban: A</span>
+                                <span class="badge bg-primary ms-2">Nilai: 10</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div class="question-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5>Soal 2</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                            <p class="fw-bold">Jika cos x = 1/2, maka nilai x adalah...</p>
+                            <div class="options">
+                                <div class="option-item">
+                                    <span class="option-letter">A</span>
+                                    <span>30°</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-letter">B</span>
+                                    <span>45°</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-letter">C</span>
+                                    <span>60°</span>
+                                </div>
+                                <div class="option-item">
+                                    <span class="option-letter">D</span>
+                                    <span>90°</span>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <span class="badge bg-success">Jawaban: C</span>
+                                <span class="badge bg-primary ms-2">Nilai: 10</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button class="btn btn-success btn-lg">
+                            <i class="fas fa-save me-2"></i>Simpan Ulangan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Question Modal -->
+    <div class="modal fade" id="addQuestionModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Soal Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addQuestionForm">
+                        <div class="mb-3">
+                            <label for="questionText" class="form-label">Teks Soal</label>
+                            <textarea class="form-control" id="questionText" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Pilihan Jawaban</label>
+                            <div class="option-item mb-2">
+                                <span class="option-letter">A</span>
+                                <input type="text" class="form-control" placeholder="Jawaban A" required>
+                            </div>
+                            <div class="option-item mb-2">
+                                <span class="option-letter">B</span>
+                                <input type="text" class="form-control" placeholder="Jawaban B" required>
+                            </div>
+                            <div class="option-item mb-2">
+                                <span class="option-letter">C</span>
+                                <input type="text" class="form-control" placeholder="Jawaban C" required>
+                            </div>
+                            <div class="option-item mb-2">
+                                <span class="option-letter">D</span>
+                                <input type="text" class="form-control" placeholder="Jawaban D" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="correctAnswer" class="form-label">Jawaban Benar</label>
+                                    <select class="form-select" id="correctAnswer" required>
+                                        <option value="">Pilih Jawaban</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="questionScore" class="form-label">Nilai Soal</label>
+                                    <input type="number" class="form-control" id="questionScore" min="1" max="100" value="10" required>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary">Tambah Soal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Form submission
+        document.getElementById('createExamForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Ulangan berhasil dibuat!');
+            // In real application, this would submit the form data to server
+        });
+    </script>
+</body>
+</html>
