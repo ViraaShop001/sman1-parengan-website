@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulai Ulangan - SMAN 1 Parengan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a4d8c;
+            --secondary: #ffc107;
+            --accent: #28a745;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .exam-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .exam-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .exam-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        .question-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .timer {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option-item:hover {
+            border-color: var(--primary);
+            background-color: #f8f9fa;
+        }
+        
+        .option-item.selected {
+            border-color: var(--primary);
+            background-color: #e3f2fd;
+        }
+        
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .option-item.selected .option-letter {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .question-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .question-indicator {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .question-indicator.answered {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .question-indicator.current {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .question-indicator:hover {
+            border-color: var(--primary);
+        }
+        
+        .btn-finish {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            font-weight: 600;
+            padding: 10px 25px;
+        }
+        
+        .btn-finish:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Exam Header -->
+    <header class="exam-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h3><i class="fas fa-graduation-cap me-2"></i>SMAN 1 PARENGAN</h3>
+                    <h5 class="mb-0">Ulangan Matematika - Trigonometri</h5>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-1">Siswa: <strong>Ahmad Fauzi</strong></p>
+                    <p class="mb-0">Kelas: <strong>XII IPA 1</strong> | NIS: <strong>20210012</strong></p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="exam-container">
+        <!-- Timer -->
+        <div class="timer">
+            <i class="fas fa-clock me-2"></i>
+            <span id="timer">90:00</span>
+        </div>
+
+        <!-- Question Navigation -->
+        <div class="exam-card">
+            <h5 class="mb-3">Navigasi Soal</h5>
+            <div class="question-list" id="questionNavigation">
+                <!-- Question indicators will be generated by JavaScript -->
+            </div>
+            <div class="mt-3">
+                <span class="badge bg-secondary me-2">Belum dijawab</span>
+                <span class="badge bg-success me-2">Sudah dijawab</span>
+                <span class="badge bg-primary">Sedang dikerjakan</span>
+            </div>
+        </div>
+
+        <!-- Current Question -->
+        <div class="question-card">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+                <h4><span class="question-number" id="currentQuestionNumber">1</span> <span id="questionText">Nilai sin 30° adalah...</span></h4>
+                <span class="badge bg-primary">Nilai: 10</span>
+            </div>
+            
+            <div class="options" id="optionsContainer">
+                <!-- Options will be populated by JavaScript -->
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-outline-primary" id="prevButton" disabled>
+                    <i class="fas fa-arrow-left me-2"></i>Soal Sebelumnya
+                </button>
+                <button class="btn btn-primary" id="nextButton">
+                    Soal Selanjutnya<i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Finish Exam -->
+        <div class="text-center mt-4">
+            <button class="btn btn-finish btn-lg" data-bs-toggle="modal" data-bs-target="#finishModal">
+                <i class="fas fa-flag-checkered me-2"></i>Selesaikan Ulangan
+            </button>
+        </div>
+    </div>
+
+    <!-- Finish Confirmation Modal -->
+    <div class="modal fade" id="finishModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Konfirmasi Penyelesaian Ulangan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menyelesaikan ulangan?</p>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Perhatian:</strong> Setelah mengirim, Anda tidak dapat mengubah jawaban lagi.
+                    </div>
+                    <p><strong>Status Jawaban:</strong></p>
+                    <ul>
+                        <li>Terjawab: <span id="answeredCount">0</span> soal</li>
+                        <li>Belum terjawab: <span id="unansweredCount">0</span> soal</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Lanjutkan Ulangan</button>
+                    <button type="button" class="btn btn-success" id="confirmFinish">Ya, Selesaikan Ulangan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Exam data
+        const examData = {
+            title: "Ulangan Matematika - Trigonometri",
+            duration: 90, // in minutes
+            questions: [
+                {
+                    id: 1,
+                    text: "Nilai sin 30° adalah...",
+                    options: [
+                        { id: 'A', text: "1/2" },
+                        { id: 'B', text: "√3/2" },
+                        { id: 'C', text: "√2/2" },
+                        { id: 'D', text: "1" }
+                    ],
+                    correctAnswer: 'A',
+                    score: 10
+                },
+                {
+                    id: 2,
+                    text: "Jika cos x = 1/2, maka nilai x adalah...",
+                    options: [
+                        { id: 'A', text: "30°" },
+                        { id: 'B', text: "45°" },
+                        { id: 'C', text: "60°" },
+                        { id: 'D', text: "90°" }
+                    ],
+                    correctAnswer: 'C',
+                    score: 10
+                },
+                {
+                    id: 3,
+                    text: "Nilai dari tan 45° adalah...",
+                    options: [
+                        { id: 'A', text: "0" },
+                        { id: 'B', text: "1" },
+                        { id: 'C', text: "√3" },
+                        { id: 'D', text: "Tidak terdefinisi" }
+                    ],
+                    correctAnswer: 'B',
+                    score: 10
+                },
+                {
+                    id: 4,
+                    text: "Sin²x + cos²x = ...",
+                    options: [
+                        { id: 'A', text: "0" },
+                        { id: 'B', text: "1" },
+                        { id: 'C', text: "2" },
+                        { id: 'D', text: "sin 2x" }
+                    ],
+                    correctAnswer: 'B',
+                    score: 10
+                },
+                {
+                    id: 5,
+                    text: "Nilai dari sin 90° adalah...",
+                    options: [
+                        { id: 'A', text: "0" },
+                        { id: 'B', text: "1/2" },
+                        { id: 'C', text: "√2/2" },
+                        { id: 'D', text: "1" }
+                    ],
+                    correctAnswer: 'D',
+                    score: 10
+                }
+            ]
+        };
+
+        // Student answers
+        let studentAnswers = {};
+        let currentQuestionIndex = 0;
+        let timeLeft = examData.duration * 60; // Convert to seconds
+
+        // Initialize exam
+        function initializeExam() {
+            // Initialize navigation
+            initializeNavigation();
+            
+            // Load first question
+            loadQuestion(currentQuestionIndex);
+            
+            // Start timer
+            startTimer();
+            
+            // Update answer counts
+            updateAnswerCounts();
+        }
+
+        // Initialize question navigation
+        function initializeNavigation() {
+            const navigationContainer = document.getElementById('questionNavigation');
+            navigationContainer.innerHTML = '';
+            
+            examData.questions.forEach((question, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'question-indicator';
+                indicator.textContent = index + 1;
+                indicator.addEventListener('click', () => navigateToQuestion(index));
+                
+                navigationContainer.appendChild(indicator);
+            });
+            
+            updateNavigation();
+        }
+
+        // Load question
+        function loadQuestion(index) {
+            const question = examData.questions[index];
+            
+            // Update question number and text
+            document.getElementById('currentQuestionNumber').textContent = index + 1;
+            document.getElementById('questionText').textContent = question.text;
+            
+            // Load options
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach(option => {
+                const optionElement = document.createElement('div');
+                optionElement.className = `option-item ${studentAnswers[question.id] === option.id ? 'selected' : ''}`;
+                optionElement.innerHTML = `
+                    <span class="option-letter">${option.id}</span>
+                    <span>${option.text}</span>
+                `;
+                optionElement.addEventListener('click', () => selectOption(question.id, option.id));
+                
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prevButton').disabled = index === 0;
+            document.getElementById('nextButton').disabled = index === examData.questions.length - 1;
+            
+            // Update navigation indicators
+            updateNavigation();
+        }
+
+        // Select option
+        function selectOption(questionId, optionId) {
+            studentAnswers[questionId] = optionId;
+            loadQuestion(currentQuestionIndex); // Reload to update UI
+            updateAnswerCounts();
+        }
+
+        // Navigate to question
+        function navigateToQuestion(index) {
+            currentQuestionIndex = index;
+            loadQuestion(index);
+        }
+
+        // Update navigation indicators
+        function updateNavigation() {
+            const indicators = document.querySelectorAll('.question-indicator');
+            
+            indicators.forEach((indicator, index) => {
+                indicator.classList.remove('answered', 'current');
+                
+                const questionId = examData.questions[index].id;
+                if (studentAnswers[questionId]) {
+                    indicator.classList.add('answered');
+                }
+                
+                if (index === currentQuestionIndex) {
+                    indicator.classList.add('current');
+                }
+            });
+        }
+
+        // Update answer counts
+        function updateAnswerCounts() {
+            const answeredCount = Object.keys(studentAnswers).length;
+            const unansweredCount = examData.questions.length - answeredCount;
+            
+            document.getElementById('answeredCount').textContent = answeredCount;
+            document.getElementById('unansweredCount').textContent = unansweredCount;
+        }
+
+        // Timer functionality
+        function startTimer() {
+            const timerElement = document.getElementById('timer');
+            
+            const timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    finishExam();
+                    return;
+                }
+                
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                timeLeft--;
+                
+                // Warning when 5 minutes left
+                if (timeLeft === 5 * 60) {
+                    timerElement.style.background = 'linear-gradient(135deg, #ffc107, #e0a800)';
+                }
+                
+                // Critical when 1 minute left
+                if (timeLeft === 60) {
+                    timerElement.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+                }
+            }, 1000);
+        }
+
+        // Finish exam
+        function finishExam() {
+            // In a real application, this would submit answers to server
+            alert('Ulangan telah diselesaikan!');
+            window.location.href = 'hasil-ulangan.html';
+        }
+
+        // Event listeners
+        document.getElementById('prevButton').addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                navigateToQuestion(currentQuestionIndex - 1);
+            }
+        });
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            if (currentQuestionIndex < examData.questions.length - 1) {
+                navigateToQuestion(currentQuestionIndex + 1);
+            }
+        });
+
+        document.getElementById('confirmFinish').addEventListener('click', finishExam);
+
+        // Initialize exam when page loads
+        document.addEventListener('DOMContentLoaded', initializeExam);
+    </script>
+</body>
+</html>
