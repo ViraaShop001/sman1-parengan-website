@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Pelajaran - SMAN 1 Parengan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <style>
+        .schedule-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .schedule-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .schedule-table td {
+            padding: 12px;
+            border: 1px solid #e9ecef;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .schedule-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .schedule-table tr:hover {
+            background-color: #e9ecef;
+        }
+        
+        .subject-cell {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .break-cell {
+            background-color: #fff3cd;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .time-cell {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            width: 100px;
+        }
+        
+        .class-selector {
+            margin-bottom: 30px;
+        }
+        
+        .day-navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .day-navigation .btn {
+            margin: 0 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .schedule-table {
+                font-size: 0.8rem;
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 8px 5px;
+            }
+            
+            .time-cell {
+                width: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-graduation-cap me-2"></i>SMAN 1 PARENGAN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="profil.html">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="berita.html">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="karya-siswa.html">Karya Siswa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white active" href="jadwal-pelajaran.html">Jadwal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="kontak.html">Kontak</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../login.html"><i class="fas fa-sign-in-alt me-1"></i> Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Beranda</a></li>
+                    <li class="breadcrumb-item active">Jadwal Pelajaran</li>
+                </ol>
+            </nav>
+            <h1 class="display-4 fw-bold">Jadwal Pelajaran</h1>
+            <p class="lead">Jadwal pembelajaran semester genap 2023/2024</p>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <!-- Class Selector -->
+            <div class="row class-selector">
+                <div class="col-md-6">
+                    <label for="classSelect" class="form-label fw-bold">Pilih Kelas:</label>
+                    <select class="form-select" id="classSelect">
+                        <option value="xipa1">X IPA 1</option>
+                        <option value="xipa2">X IPA 2</option>
+                        <option value="xips1">X IPS 1</option>
+                        <option value="xips2">X IPS 2</option>
+                        <option value="xiipa1">XI IPA 1</option>
+                        <option value="xiipa2">XI IPA 2</option>
+                        <option value="xiips1">XI IPS 1</option>
+                        <option value="xiips2">XI IPS 2</option>
+                        <option value="xiiipa1" selected>XII IPA 1</option>
+                        <option value="xiiipa2">XII IPA 2</option>
+                        <option value="xiiips1">XII IPS 1</option>
+                        <option value="xiiips2">XII IPS 2</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="weekSelect" class="form-label fw-bold">Pilih Minggu:</label>
+                    <select class="form-select" id="weekSelect">
+                        <option value="1" selected>Minggu 1 (15-19 Mei 2023)</option>
+                        <option value="2">Minggu 2 (22-26 Mei 2023)</option>
+                        <option value="3">Minggu 3 (29 Mei - 2 Juni 2023)</option>
+                        <option value="4">Minggu 4 (5-9 Juni 2023)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Day Navigation -->
+            <div class="day-navigation">
+                <button class="btn btn-outline-primary active" data-day="senin">Senin</button>
+                <button class="btn btn-outline-primary" data-day="selasa">Selasa</button>
+                <button class="btn btn-outline-primary" data-day="rabu">Rabu</button>
+                <button class="btn btn-outline-primary" data-day="kamis">Kamis</button>
+                <button class="btn btn-outline-primary" data-day="jumat">Jumat</button>
+                <button class="btn btn-outline-primary" data-day="sabtu">Sabtu</button>
+            </div>
+
+            <!-- Schedule Table -->
+            <div class="schedule-card">
+                <h4 class="mb-4" id="scheduleTitle">Jadwal Pelajaran XII IPA 1 - Senin</h4>
+                <div class="table-responsive">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Waktu</th>
+                                <th>Mata Pelajaran</th>
+                                <th>Guru</th>
+                                <th>Ruang</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scheduleBody">
+                            <!-- Schedule data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="schedule-card">
+                        <h5 class="mb-3"><i class="fas fa-info-circle text-primary me-2"></i>Informasi Jadwal</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-clock me-2"></i> Jam pelajaran: 45 menit</li>
+                            <li class="mb-2"><i class="fas fa-door-open me-2"></i> Ruang khusus: Lab. Sains, Lab. Komputer</li>
+                            <li class="mb-2"><i class="fas fa-book me-2"></i> Mata pelajaran pilihan sesuai minat</li>
+                            <li class="mb-2"><i class="fas fa-calendar me-2"></i> Jadwal dapat berubah sewaktu-waktu</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="schedule-card">
+                        <h5 class="mb-3"><i class="fas fa-exclamation-triangle text-warning me-2"></i>Pengumuman</h5>
+                        <div class="alert alert-warning">
+                            <strong>Perhatian!</strong> Jadwal ulangan tengah semester akan dilaksanakan pada minggu ke-3. Perhatikan perubahan jadwal.
+                        </div>
+                        <div class="alert alert-info">
+                            <strong>Info!</strong> Ekstrakurikuler dilaksanakan setiap hari Jumat sore.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>SMAN 1 Parengan</h5>
+                    <p>Jl. Raya Parengan No. 123, Kec. Parengan, Kab. Tuban, Jawa Timur 62366</p>
+                    <p><i class="fas fa-phone me-2"></i> (0356) 711234</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@sman1parengan.sch.id</p>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Menu</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../index.html">Beranda</a></li>
+                        <li><a href="profil.html">Profil</a></li>
+                        <li><a href="berita.html">Berita</a></li>
+                        <li><a href="karya-siswa.html">Karya Siswa</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Layanan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="../login.html">Login Siswa</a></li>
+                        <li><a href="../login.html">Login Guru</a></li>
+                        <li><a href="jadwal-pelajaran.html">Jadwal</a></li>
+                        <li><a href="../ulangan/daftar-ulangan.html">Ulangan</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Kontak Kami</h5>
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Nama">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="3" placeholder="Pesan"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 SMAN 1 Parengan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Sample schedule data
+        const scheduleData = {
+            xiiipa1: {
+                senin: [
+                    { time: '07:00 - 07:45', subject: 'Matematika', teacher: 'Diana Sari, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '07:45 - 08:30', subject: 'Matematika', teacher: 'Diana Sari, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '08:30 - 09:15', subject: 'Fisika', teacher: 'Budi Santoso, S.Pd.', room: 'Lab. Fisika' },
+                    { time: '09:15 - 10:00', subject: 'Fisika', teacher: 'Budi Santoso, S.Pd.', room: 'Lab. Fisika' },
+                    { time: '10:00 - 10:30', subject: 'Istirahat', teacher: '', room: '' },
+                    { time: '10:30 - 11:15', subject: 'Kimia', teacher: 'Rina Marlina, S.Pd.', room: 'Lab. Kimia' },
+                    { time: '11:15 - 12:00', subject: 'Kimia', teacher: 'Rina Marlina, S.Pd.', room: 'Lab. Kimia' },
+                    { time: '12:00 - 12:45', subject: 'Bahasa Indonesia', teacher: 'Sari Indah, S.Pd.', room: 'R. XII IPA 1' }
+                ],
+                selasa: [
+                    { time: '07:00 - 07:45', subject: 'Biologi', teacher: 'Ahmad Fauzi, S.Pd.', room: 'Lab. Biologi' },
+                    { time: '07:45 - 08:30', subject: 'Biologi', teacher: 'Ahmad Fauzi, S.Pd.', room: 'Lab. Biologi' },
+                    { time: '08:30 - 09:15', subject: 'Bahasa Inggris', teacher: 'Linda Sari, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '09:15 - 10:00', subject: 'Bahasa Inggris', teacher: 'Linda Sari, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '10:00 - 10:30', subject: 'Istirahat', teacher: '', room: '' },
+                    { time: '10:30 - 11:15', subject: 'Sejarah', teacher: 'Joko Widodo, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '11:15 - 12:00', subject: 'Sejarah', teacher: 'Joko Widodo, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '12:00 - 12:45', subject: 'Seni Budaya', teacher: 'Maya Sari, S.Pd.', room: 'Aula' }
+                ],
+                rabu: [
+                    { time: '07:00 - 07:45', subject: 'Pendidikan Agama', teacher: 'Ustadz Ahmad', room: 'R. XII IPA 1' },
+                    { time: '07:45 - 08:30', subject: 'Pendidikan Agama', teacher: 'Ustadz Ahmad', room: 'R. XII IPA 1' },
+                    { time: '08:30 - 09:15', subject: 'PKn', teacher: 'Siti Rahma, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '09:15 - 10:00', subject: 'PKn', teacher: 'Siti Rahma, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '10:00 - 10:30', subject: 'Istirahat', teacher: '', room: '' },
+                    { time: '10:30 - 11:15', subject: 'Olahraga', teacher: 'Rudi Hartono, S.Pd.', room: 'Lapangan' },
+                    { time: '11:15 - 12:00', subject: 'Olahraga', teacher: 'Rudi Hartono, S.Pd.', room: 'Lapangan' },
+                    { time: '12:00 - 12:45', subject: 'BK', teacher: 'Dewi Sartika, S.Pd.', room: 'R. BK' }
+                ],
+                kamis: [
+                    { time: '07:00 - 07:45', subject: 'Matematika', teacher: 'Diana Sari, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '07:45 - 08:30', subject: 'Matematika', teacher: 'Diana Sari, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '08:30 - 09:15', subject: 'Fisika', teacher: 'Budi Santoso, S.Pd.', room: 'Lab. Fisika' },
+                    { time: '09:15 - 10:00', subject: 'Fisika', teacher: 'Budi Santoso, S.Pd.', room: 'Lab. Fisika' },
+                    { time: '10:00 - 10:30', subject: 'Istirahat', teacher: '', room: '' },
+                    { time: '10:30 - 11:15', subject: 'Kimia', teacher: 'Rina Marlina, S.Pd.', room: 'Lab. Kimia' },
+                    { time: '11:15 - 12:00', subject: 'Kimia', teacher: 'Rina Marlina, S.Pd.', room: 'Lab. Kimia' },
+                    { time: '12:00 - 12:45', subject: 'Bahasa Indonesia', teacher: 'Sari Indah, S.Pd.', room: 'R. XII IPA 1' }
+                ],
+                jumat: [
+                    { time: '07:00 - 07:45', subject: 'Bahasa Inggris', teacher: 'Linda Sari, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '07:45 - 08:30', subject: 'Bahasa Inggris', teacher: 'Linda Sari, S.Pd.', room: 'R. XII IPA 1' },
+                    { time: '08:30 - 09:15', subject: 'TIK', teacher: 'Andi Pratama, S.Kom.', room: 'Lab. Komputer' },
+                    { time: '09:15 - 10:00', subject: 'TIK', teacher: 'Andi Pratama, S.Kom.', room: 'Lab. Komputer' },
+                    { time: '10:00 - 10:30', subject: 'Istirahat', teacher: '', room: '' },
+                    { time: '10:30 - 11:00', subject: 'Sholat Jumat', teacher: '', room: 'Musholla' },
+                    { time: '11:00 - 11:45', subject: 'Ekstrakurikuler', teacher: '', room: 'Berbagai' }
+                ],
+                sabtu: [
+                    { time: '07:00 - 07:45', subject: 'Pilihan: Sastra/Programming', teacher: 'Guru Pilihan', room: 'R. Khusus' },
+                    { time: '07:45 - 08:30', subject: 'Pilihan: Sastra/Programming', teacher: 'Guru Pilihan', room: 'R. Khusus' },
+                    { time: '08:30 - 09:15', subject: 'Pilihan: Sastra/Programming', teacher: 'Guru Pilihan', room: 'R. Khusus' },
+                    { time: '09:15 - 10:00', subject: 'Pilihan: Sastra/Programming', teacher: 'Guru Pilihan', room: 'R. Khusus' },
+                    { time: '10:00 - 10:30', subject: 'Istirahat', teacher: '', room: '' },
+                    { time: '10:30 - 11:15', subject: 'Klub/Kegiatan', teacher: 'Pembina', room: 'Berbagai' },
+                    { time: '11:15 - 12:00', subject: 'Klub/Kegiatan', teacher: 'Pembina', room: 'Berbagai' }
+                ]
+            }
+        };
+
+        // Initialize schedule
+        function initializeSchedule() {
+            loadSchedule('xiiipa1', 'senin');
+            
+            // Event listeners for class selection
+            document.getElementById('classSelect').addEventListener('change', function() {
+                const currentDay = document.querySelector('.day-navigation .btn.active').getAttribute('data-day');
+                loadSchedule(this.value, currentDay);
+            });
+            
+            // Event listeners for day navigation
+            document.querySelectorAll('.day-navigation .btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.day-navigation .btn').forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.classList.remove('btn-primary');
+                        btn.classList.add('btn-outline-primary');
+                    });
+                    
+                    this.classList.add('active');
+                    this.classList.remove('btn-outline-primary');
+                    this.classList.add('btn-primary');
+                    
+                    const selectedClass = document.getElementById('classSelect').value;
+                    const selectedDay = this.getAttribute('data-day');
+                    loadSchedule(selectedClass, selectedDay);
+                });
+            });
+        }
+
+        // Load schedule for specific class and day
+        function loadSchedule(className, day) {
+            const schedule = scheduleData[className]?.[day] || [];
+            const scheduleBody = document.getElementById('scheduleBody');
+            const scheduleTitle = document.getElementById('scheduleTitle');
+            
+            // Update title
+            const classText = document.getElementById('classSelect').options[document.getElementById('classSelect').selectedIndex].text;
+            const dayText = document.querySelector('.day-navigation .btn.active').textContent;
+            scheduleTitle.textContent = `Jadwal Pelajaran ${classText} - ${dayText}`;
+            
+            // Clear existing schedule
+            scheduleBody.innerHTML = '';
+            
+            // Populate schedule
+            schedule.forEach(item => {
+                const row = document.createElement('tr');
+                
+                if (item.subject === 'Istirahat' || item.subject === 'Sholat Jumat') {
+                    row.innerHTML = `
+                        <td class="time-cell">${item.time}</td>
+                        <td class="break-cell" colspan="3">${item.subject}</td>
+                    `;
+                } else {
+                    row.innerHTML = `
+                        <td class="time-cell">${item.time}</td>
+                        <td class="subject-cell">${item.subject}</td>
+                        <td>${item.teacher}</td>
+                        <td>${item.room}</td>
+                    `;
+                }
+                
+                scheduleBody.appendChild(row);
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initializeSchedule);
+    </script>
+</body>
+</html>
